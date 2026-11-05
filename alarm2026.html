@@ -1,0 +1,253 @@
+<html>
+<head>
+<style type="text/css">
+    table {
+        border: 1px solid #777;
+        border-collapse: collapse;
+    } 
+
+    table tr th,
+    table tr td {
+        border: 1px solid #777;
+    }
+
+	.textcol {
+		width: 150px;
+		text-align: center;
+	}
+	
+	.logo {
+		width: 100px;
+	}
+	
+	.logocol {
+		width: 100px;
+		text-align: center;
+	}
+</style>
+<title>Alarm NFL Wins Pool 2026-2027</title>
+</head>
+
+<body>
+<h1>Alarm NFL Wins Pool 2026-2027</h1>
+<div id="datalist"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
+<script src="nfl.js?v=20261105191924"></script>
+<script>
+
+$(document).ready(function() {
+function sortByProperty(property){  
+   return function(a,b){  
+      if(a[property] > b[property])  
+         return -1;  
+      else if(a[property] < b[property])  
+         return 1;  
+  
+      return 0;  
+   }  
+}
+
+data.sort(sortByProperty("Wins"));
+    var team01 = ["LAR", "LAC", "NYJ"];//Jason
+    var team02 = ["SEA", "KC", "NO"];//Tim
+    var team03 = ["DET", "IND", "WAS"];//AJ
+    var team04 = ["CIN", "GB", "ATL"];//Alyssa
+    var team05 = ["HOU", "JAX", "NYG"];//Matt
+    var team06 = ["NE", "SF", "CAR"];//Cody
+    var team07 = ["DEN", "DAL", "CLE"];//David
+    var team08 = ["PHI", "MIN", "TB"];//Erin
+    var team09 = ["BAL", "PIT", "LV"];//Kevin
+    var team10 = ["BUF", "CHI", "TEN"];//Carl
+    var undrafted = ["ARI","MIA"];
+
+    var main = '<table border=0 cellpadding=0 cellspacing=0><tbody>';
+
+    var team01Tbl = '<tr><th class="textcol">Jason</th>';
+    var team01Wins = 0;
+    var team01Games = 0;
+    var team01Diff = 0;
+    var team01FJ = 0;
+
+    var team02Tbl = '<tr><th class="textcol">Tim</th>';
+    var team02Wins = 0;
+    var team02Games = 0;
+    var team02Diff = 0;
+    var team02FJ = 0;
+
+    var team03Tbl = '<tr><th class="textcol">AJ</th>';
+    var team03Wins = 0;
+    var team03Games = 0;
+    var team03Diff = 0;
+    var team03FJ = 0;
+
+    var team04Tbl = '<tr><th class="textcol">Alyssa</th>';
+    var team04Wins = 0;
+    var team04Games = 0;
+    var team04Diff = 0;
+    var team04FJ = 0;
+
+    var team05Tbl = '<tr><th class="textcol">Matt</th>';
+    var team05Wins = 0;
+    var team05Games = 0;
+    var team05Diff = 0;
+    var team05FJ = 0;
+
+    var team06Tbl = '<tr><th class="textcol">Cody</th>';
+    var team06Wins = 0;
+    var team06Games = 0;
+    var team06Diff = 0;
+    var team06FJ = 0;
+
+    var team07Tbl = '<tr><th class="textcol">David</th>';
+    var team07Wins = 0;
+    var team07Games = 0;
+    var team07Diff = 0;
+    var team07FJ = 0;
+
+    var team08Tbl = '<tr><th class="textcol">Erin</th>';
+    var team08Wins = 0;
+    var team08Games = 0;
+    var team08Diff = 0;
+    var team08FJ = 0;
+
+    var team09Tbl = '<tr><th class="textcol">Kevin</th>';
+    var team09Wins = 0;
+    var team09Games = 0;
+    var team09Diff = 0;
+    var team09FJ = 0;
+
+    var team10Tbl = '<tr><th class="textcol">Carl</th>';
+    var team10Wins = 0;
+    var team10Games = 0;
+    var team10Diff = 0;
+    var team10FJ = 0;
+
+    var undraftedTbl = '<tr><th class="textcol">Undrafted</th>';
+    var undraftedWins = 0;
+    var undraftedGames = 0;
+    var undraftedDiff = 0;
+    var undraftedFJ = 0;
+
+    $.each(data, function() {
+		var team = this.Team;
+		var wins = this.Wins*1;
+		var losses = this.Losses*1;
+		var ties = this.Ties*1;
+		var net = this.NetPoints*1;
+		var rec = wins + '-' + losses;
+		if (ties > 0) {
+			rec += '-' + ties;
+		}
+		var rowData = '<td class="logocol"><img class="logo" src="./Logos/' + team.toLowerCase() + '.png"><br />' + rec + '</td>';
+		if (team01.indexOf(team) >= 0 ) {
+			team01Tbl += rowData;
+			team01Wins += wins;
+			team01Games += wins + losses + ties;
+			team01FJ += ties;
+			team01Diff += net;
+		} else if (team02.indexOf(team) >= 0 ) {
+			team02Tbl += rowData;
+			team02Wins += wins;
+			team02Games += wins + losses + ties;
+			team02FJ += ties;
+			team02Diff += net;
+		} else if (team03.indexOf(team) >= 0 ) {
+			team03Tbl += rowData;
+			team03Wins += wins;
+			team03Games += wins + losses + ties;
+			team03FJ += ties;
+			team03Diff += net;
+		} else if (team04.indexOf(team) >= 0 ) {
+			team04Tbl += rowData;
+			team04Wins += wins;
+			team04Games += wins + losses + ties;
+			team04FJ += ties;
+			team04Diff += net;
+		} else if (team05.indexOf(team) >= 0 ) {
+			team05Tbl += rowData;
+			team05Wins += wins;
+			team05Games += wins + losses + ties;
+			team05FJ += ties;
+			team05Diff += net;
+		} else if (team06.indexOf(team) >= 0 ) {
+			team06Tbl += rowData;
+			team06Wins += wins;
+			team06Games += wins + losses + ties;
+			team06FJ += ties;
+			team06Diff += net;
+		} else if (team07.indexOf(team) >= 0 ) {
+			team07Tbl += rowData;
+			team07Wins += wins;
+			team07Games += wins + losses + ties;
+			team07FJ += ties;
+			team07Diff += net;
+		} else if (team08.indexOf(team) >= 0 ) {
+			team08Tbl += rowData;
+			team08Wins += wins;
+			team08Games += wins + losses + ties;
+			team08FJ += ties;
+			team08Diff += net;
+		} else if (team09.indexOf(team) >= 0 ) {
+			team09Tbl += rowData;
+			team09Wins += wins;
+			team09Games += wins + losses + ties;
+			team09FJ += ties;
+			team09Diff += net;
+		} else if (team10.indexOf(team) >= 0 ) {
+			team10Tbl += rowData;
+			team10Wins += wins;
+			team10Games += wins + losses + ties;
+			team10FJ += ties;
+			team10Diff += net;
+		} else if (undrafted.indexOf(team) >= 0 ) {
+			undraftedTbl += rowData;
+			undraftedWins += wins;
+			undraftedGames += wins + losses + ties;
+			undraftedFJ += ties;
+			undraftedDiff += net;
+		}
+    });
+    team01Tbl += '<td class="textcol"><strong>Total Wins: '+team01Wins+' ('+team01Games+')<br />Differential: '+team01Diff+'<br />Ties: '+team01FJ+ '</strong></td></tr>';
+    team02Tbl += '<td class="textcol"><strong>Total Wins: ' + team02Wins + ' (' + team02Games +')<br />Differential: '+team02Diff+'<br />Ties: '+team02FJ+ '</strong></td></tr>';
+    team03Tbl += '<td class="textcol"><strong>Total Wins: ' + team03Wins + ' (' + team03Games +')<br />Differential: '+team03Diff+'<br />Ties: '+team03FJ+ '</strong></td></tr>';
+    team04Tbl += '<td class="textcol"><strong>Total Wins: ' + team04Wins + ' (' + team04Games +')<br />Differential: '+team04Diff+'<br />Ties: '+team04FJ+ '</strong></td></tr>';
+    team05Tbl += '<td class="textcol"><strong>Total Wins: ' + team05Wins + ' (' + team05Games +')<br />Differential: '+team05Diff+'<br />Ties: '+team05FJ+ '</strong></td></tr>';
+    team07Tbl += '<td class="textcol"><strong>Total Wins: ' + team07Wins + ' (' + team07Games +')<br />Differential: '+team07Diff+'<br />Ties: '+team07FJ+ '</strong></td></tr>';
+    team08Tbl += '<td class="textcol"><strong>Total Wins: ' + team08Wins + ' (' + team08Games +')<br />Differential: '+team08Diff+'<br />Ties: '+team08FJ+ '</strong></td></tr>';
+    team10Tbl += '<td class="textcol"><strong>Total Wins: ' + team10Wins + ' (' + team10Games +')<br />Differential: '+team10Diff+'<br />Ties: '+team10FJ+ '</strong></td></tr>';
+    team09Tbl += '<td class="textcol"><strong>Total Wins: ' + team09Wins + ' (' + team09Games +')<br />Differential: '+team09Diff+'<br />Ties: '+team09FJ+ '</strong></td></tr>';
+    team06Tbl += '<td class="textcol"><strong>Total Wins: ' + team06Wins + ' (' + team06Games +')<br />Differential: '+team06Diff+'<br />Ties: '+team06FJ+ '</strong></td></tr>';
+    undraftedTbl += '<td></td><td class="textcol"><strong>Total Wins: ' + undraftedWins + ' (' + undraftedGames +')<br />Differential: '+undraftedDiff+'<br />Ties: '+undraftedFJ+ '</strong></td></tr>';
+    var winsArr = [
+        {wins: team01Wins, diff: team01Diff, ties: team01FJ, table: team01Tbl},
+        {wins: team02Wins, diff: team02Diff, ties: team02FJ, table: team02Tbl},
+        {wins: team03Wins, diff: team03Diff, ties: team03FJ, table: team03Tbl},
+        {wins: team04Wins, diff: team04Diff, ties: team04FJ, table: team04Tbl},
+        {wins: team05Wins, diff: team05Diff, ties: team05FJ, table: team05Tbl},
+        {wins: team06Wins, diff: team06Diff, ties: team06FJ, table: team06Tbl},
+        {wins: team07Wins, diff: team07Diff, ties: team07FJ, table: team07Tbl},
+        {wins: team08Wins, diff: team08Diff, ties: team08FJ, table: team08Tbl},
+        {wins: team09Wins, diff: team09Diff, ties: team09FJ, table: team09Tbl},
+        {wins: team10Wins, diff: team10Diff, ties: team10FJ, table: team10Tbl}
+        ];
+    winsArr.sort(function(a,b) {
+		if (a.wins < b.wins) return 1;
+		if (a.wins > b.wins) return -1;
+		if (a.diff < b.diff) return 1;
+		if (a.diff > b.diff) return -1;
+		if (a.ties < b.ties) return 1;
+		if (a.ties > b.ties) return -1;
+    });
+    $.each(winsArr, function() {
+        main += this.table;
+    });
+	main += undraftedTbl;
+    main += '</table>';
+    document.getElementById("datalist").innerHTML = main;
+});
+</script>
+
+<h3>Last Updated: Thu Nov  5 19:19:24 UTC 2026</h3>
+</body>
+</html>
