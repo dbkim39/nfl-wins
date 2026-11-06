@@ -2,6 +2,8 @@ name: Refresh NFL Standings
 
 on:
   schedule:
+    # test
+    - cron: '35 12 6 11 *'
     # Sunday 5:00 PM ET
     - cron: '0 22 * * 0'
     # Sunday 8:30 PM ET (01:30 UTC Monday)
