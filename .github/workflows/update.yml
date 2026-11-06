@@ -1,16 +1,7 @@
 name: Refresh NFL Standings
 
 on:
-  schedule:
-    # test
-    - cron: '35 12 6 11 *'
-    # Sunday 4:47 PM ET
-    - cron: '47 21 * * 0'
-    # Sunday 8:07 PM ET
-    - cron: '07 1 * * 1'
-    # 2:07 AM ET on Monday, Tuesday, and Friday
-    - cron: '7 7 * * 1,2,5'
-  # Allows manual triggering from the GitHub web UI or mobile app anytime
+  # Triggered by cron-job.org via the API, or manually from the web UI or mobile app
   workflow_dispatch:
 
 permissions:
