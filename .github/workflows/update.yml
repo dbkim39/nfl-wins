@@ -14,9 +14,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Fetch and process standings
+      - name: Fetch and process standings / use Eastern timezone
         env:
           SPORTSDATA_KEY: ${{ secrets.SPORTSDATA_KEY }}
+          TZ: America/New_York
         run: |
           chmod +x update_standings.sh
           ./update_standings.sh
