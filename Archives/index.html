@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFL Wins Pool — Archives</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --primary: #013369;
+      --accent: #d50a0a;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 4px 12px rgba(1, 51, 105, 0.15);
+      margin-bottom: 24px;
+    }
+
+    .title-group h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .title-group p {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      margin-top: 2px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .view-toggle {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .view-toggle button {
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      padding: 7px 14px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .view-toggle button.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-link {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      transition: background 0.15s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .dropdown-bar {
+      background: var(--surface);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .select-wrapper label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    select {
+      padding: 9px 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      min-width: 220px;
+    }
+
+    select:focus {
+      outline: 2px solid var(--primary);
+      border-color: transparent;
+    }
+
+    .open-direct {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: #eff6ff;
+      transition: background 0.15s ease;
+    }
+
+    .open-direct:hover {
+      background: #dbeafe;
+    }
+
+    .frame-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 78vh;
+      min-height: 550px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+      box-shadow: 0 6px 16px rgba(1, 51, 105, 0.1);
+    }
+
+    .card-year {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .card-label {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .card-footer {
+      margin-top: 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="title-group">
+        <h1>NFL Wins Pool Archives</h1>
+        <p>Historical final standings (2018 – 2025)</p>
+      </div>
+
+      <div class="controls">
+        <div class="view-toggle" role="group" aria-label="View mode">
+          <button id="btn-dropdown" class="active" type="button">Dropdown Viewer</button>
+          <button id="btn-static" type="button">All Years List</button>
+        </div>
+        <a href="alarm.html" class="nav-link">Alarm Archives</a>
+        <a href="../" class="nav-link">← Current Season</a>
+      </div>
+    </header>
+
+    <!-- MODE 1: DROPDOWN VIEWER -->
+    <section id="dropdown-view">
+      <div class="dropdown-bar">
+        <div class="select-wrapper">
+          <label for="season-select">Select Season:</label>
+          <select id="season-select"></select>
+        </div>
+        <a id="direct-link" href="2025.html" target="_blank" rel="noopener" class="open-direct">
+          Open Full Page ↗
+        </a>
+      </div>
+
+      <div class="frame-container">
+        <iframe id="archive-frame" src="2025.html" title="Archived Standings"></iframe>
+      </div>
+    </section>
+
+    <!-- MODE 2: STATIC CARDS VIEW -->
+    <section id="static-view" class="hidden">
+      <div id="seasons-grid" class="grid"></div>
+    </section>
+  </div>
+
+  <script>
+    // Add future years (e.g., 2026.html) to the top of this array
+    const seasonFiles = [
+      "2025.html",
+      "2024.html",
+      "2023.html",
+      "2022.html",
+      "2021.html",
+      "2020.html",
+      "2019.html",
+      "2018.html"
+    ];
+
+    // Enforce filter: only keep files starting with a 4-digit year
+    const validSeasons = seasonFiles.filter((file) => /^\d{4}/.test(file));
+
+    const btnDropdown = document.getElementById("btn-dropdown");
+    const btnStatic = document.getElementById("btn-static");
+    const dropdownView = document.getElementById("dropdown-view");
+    const staticView = document.getElementById("static-view");
+    const seasonSelect = document.getElementById("season-select");
+    const archiveFrame = document.getElementById("archive-frame");
+    const directLink = document.getElementById("direct-link");
+    const seasonsGrid = document.getElementById("seasons-grid");
+
+    function init() {
+      validSeasons.forEach((file) => {
+        const year = file.replace(".html", "");
+
+        // 1. Dropdown option
+        const option = document.createElement("option");
+        option.value = file;
+        option.textContent = `${year} Season`;
+        seasonSelect.appendChild(option);
+
+        // 2. Static card
+        const card = document.createElement("a");
+        card.href = file;
+        card.className = "card";
+        card.innerHTML = `
+          <div>
+            <div class="card-year">${year}</div>
+            <div class="card-label">Final Pool Standings</div>
+          </div>
+          <div class="card-footer">
+            <span>View Standings</span>
+            <span>→</span>
+          </div>
+        `;
+        seasonsGrid.appendChild(card);
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const requestedFile = params.get("file");
+      if (requestedFile && validSeasons.includes(requestedFile)) {
+        loadArchive(requestedFile);
+      } else {
+        loadArchive(validSeasons[0]);
+      }
+
+      if (params.get("view") === "list") {
+        setView("static");
+      }
+    }
+
+    function loadArchive(filename) {
+      seasonSelect.value = filename;
+      archiveFrame.src = filename;
+      directLink.href = filename;
+    }
+
+    function setView(mode) {
+      if (mode === "dropdown") {
+        dropdownView.classList.remove("hidden");
+        staticView.classList.add("hidden");
+        btnDropdown.classList.add("active");
+        btnStatic.classList.remove("active");
+      } else {
+        dropdownView.classList.add("hidden");
+        staticView.classList.remove("hidden");
+        btnStatic.classList.add("active");
+        btnDropdown.classList.remove("active");
+      }
+    }
+
+    seasonSelect.addEventListener("change", (e) => loadArchive(e.target.value));
+    btnDropdown.addEventListener("click", () => setView("dropdown"));
+    btnStatic.addEventListener("click", () => setView("static"));
+
+    init();
+  </script>
+</body>
+</html>
