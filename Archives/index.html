@@ -274,7 +274,6 @@
   </div>
 
   <script>
-    // Current season in parent folder + archived seasons in this folder
     const seasonFiles = [
       "../2026.html",
       "2025.html",
@@ -287,9 +286,6 @@
       "2018.html"
     ];
 
-    // Matches either "2025.html" or "../2026.html"
-    const validSeasons = seasonFiles.filter((file) => /^(\.\.\/)?\d{4}\.html$/.test(file));
-
     const btnDropdown = document.getElementById("btn-dropdown");
     const btnStatic = document.getElementById("btn-static");
     const dropdownView = document.getElementById("dropdown-view");
@@ -300,39 +296,39 @@
     const seasonsGrid = document.getElementById("seasons-grid");
 
     function init() {
-      validSeasons.forEach((file) => {
-        const year = file.match(/\d{4}/)[0];
-        const isCurrent = file.startsWith("../");
+      seasonFiles.forEach((file) => {
+        const yearMatch = file.match(/\d{4}/);
+        const year = yearMatch ? yearMatch[0] : file;
+        const isCurrent = file.indexOf("../") === 0;
 
         // 1. Dropdown option
         const option = document.createElement("option");
         option.value = file;
-        option.textContent = isCurrent ? `${year} Season (Current)` : `${year} Season`;
+        option.textContent = isCurrent ? year + " Season (Current)" : year + " Season";
         seasonSelect.appendChild(option);
 
         // 2. Static card
         const card = document.createElement("a");
         card.href = file;
         card.className = "card";
-        card.innerHTML = `
-          <div>
-            <div class="card-year">${year}</div>
-            <div class="card-label">${isCurrent ? "Current Season Standings" : "Final Pool Standings"}</div>
-          </div>
-          <div class="card-footer">
-            <span>View Standings</span>
-            <span>→</span>
-          </div>
-        `;
+        card.innerHTML =
+          '<div>' +
+            '<div class="card-year">' + year + '</div>' +
+            '<div class="card-label">' + (isCurrent ? 'Current Season Standings' : 'Final Pool Standings') + '</div>' +
+          '</div>' +
+          '<div class="card-footer">' +
+            '<span>View Standings</span>' +
+            '<span>→</span>' +
+          '</div>';
         seasonsGrid.appendChild(card);
       });
 
       const params = new URLSearchParams(window.location.search);
       const requestedFile = params.get("file");
-      if (requestedFile && validSeasons.includes(requestedFile)) {
+      if (requestedFile && seasonFiles.indexOf(requestedFile) !== -1) {
         loadArchive(requestedFile);
       } else {
-        loadArchive(validSeasons[0]);
+        loadArchive(seasonFiles[0]);
       }
 
       if (params.get("view") === "list") {
@@ -355,4 +351,22 @@
       } else {
         dropdownView.classList.add("hidden");
         staticView.classList.remove("hidden");
-        btnStatic.
+        btnStatic.classList.add("active");
+        btnDropdown.classList.remove("active");
+      }
+    }
+
+    seasonSelect.addEventListener("change", function (e) {
+      loadArchive(e.target.value);
+    });
+    btnDropdown.addEventListener("click", function () {
+      setView("dropdown");
+    });
+    btnStatic.addEventListener("click", function () {
+      setView("static");
+    });
+
+    init();
+  </script>
+</body>
+</html>
