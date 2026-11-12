@@ -108,6 +108,15 @@
       background: rgba(255, 255, 255, 0.1);
     }
 
+    .nav-link.current-year {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .nav-link.current-year:hover {
+      background: #b50808;
+    }
+
     .dropdown-bar {
       background: var(--surface);
       padding: 16px 20px;
@@ -141,7 +150,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       cursor: pointer;
-      min-width: 220px;
+      min-width: 240px;
     }
 
     select:focus {
@@ -206,6 +215,11 @@
       box-shadow: 0 6px 16px rgba(1, 51, 105, 0.1);
     }
 
+    .card.featured {
+      border-color: var(--accent);
+      background: #fffafa;
+    }
+
     .card-year {
       font-size: 1.4rem;
       font-weight: 800;
@@ -246,6 +260,7 @@
           <button id="btn-dropdown" class="active" type="button">Dropdown Viewer</button>
           <button id="btn-static" type="button">All Years List</button>
         </div>
+        <a href="../alarm2026.html" class="nav-link current-year">2026 Alarm (Current) ↗</a>
       </div>
     </header>
 
@@ -273,10 +288,11 @@
   </div>
 
   <script>
-    // Add future alarm files (e.g., alarm2026.html) to the top of this array
+    // Current year points to the parent folder (../alarm2026.html); archives stay in this folder
     const alarmFiles = [
-      { file: "alarm2025.html", year: "2025" },
-      { file: "alarm2024.html", year: "2024" }
+      { file: "../alarm2026.html", year: "2026", label: "Current Season Alarm", isCurrent: true },
+      { file: "alarm2025.html",    year: "2025", label: "Archived Alarm Standings", isCurrent: false },
+      { file: "alarm2024.html",    year: "2024", label: "Archived Alarm Standings", isCurrent: false }
     ];
 
     const btnDropdown = document.getElementById("btn-dropdown");
@@ -293,32 +309,33 @@
         // 1. Dropdown option
         const option = document.createElement("option");
         option.value = item.file;
-        option.textContent = `Alarm ${item.year}`;
+        option.textContent = item.isCurrent ? `Alarm ${item.year} (Current)` : `Alarm ${item.year}`;
         alarmSelect.appendChild(option);
 
         // 2. Static card
         const card = document.createElement("a");
         card.href = item.file;
-        card.className = "card";
+        card.className = item.isCurrent ? "card featured" : "card";
         card.innerHTML = `
           <div>
             <div class="card-year">${item.year}</div>
-            <div class="card-label">Alarm Standings</div>
+            <div class="card-label">${item.label}</div>
           </div>
           <div class="card-footer">
-            <span>View Archive</span>
+            <span>${item.isCurrent ? "View Current Standings" : "View Archive"}</span>
             <span>→</span>
           </div>
         `;
         alarmGrid.appendChild(card);
       });
 
+      // Default to the most recent archived year (alarm2025.html), or honor ?file= param
       const params = new URLSearchParams(window.location.search);
       const requestedFile = params.get("file");
       if (requestedFile && alarmFiles.some((a) => a.file === requestedFile)) {
         loadArchive(requestedFile);
       } else {
-        loadArchive(alarmFiles[0].file);
+        loadArchive("alarm2025.html");
       }
 
       if (params.get("view") === "list") {
