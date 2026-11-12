@@ -1,0 +1,118 @@
+<html>
+<head>
+<style type="text/css">
+    table {
+        border: 1px solid #777;
+        border-collapse: collapse;
+    } 
+
+    table tr th,
+    table tr td {
+        border: 1px solid #777;
+    }
+
+	.textcol {
+		width: 150px;
+		text-align: center;
+	}
+	
+	.logo {
+		width: 100px;
+	}
+	
+	.logocol {
+		width: 100px;
+		text-align: center;
+	}
+</style>
+<title>##TITLE##</title>
+</head>
+
+<body>
+<h1>##TITLE##</h1>
+<div id="datalist"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
+<script src="nfl.js"></script>
+<script>
+
+$(document).ready(function() {
+function sortByProperty(property){  
+   return function(a,b){  
+      if(a[property] > b[property])  
+         return -1;  
+      else if(a[property] < b[property])  
+         return 1;  
+  
+      return 0;  
+   }  
+}
+
+data.sort(sortByProperty("Wins"));
+    var doe = ["GB","DAL"];
+    var aj = ["PHI","ARI"];
+
+    var main = '<table border=0 cellpadding=0 cellspacing=0><tbody>';
+
+    var doeTbl = '<tr><th class="textcol">Doe</th>';
+    var doeWins = 4;
+    var doeGames = 0;
+    var doeDiff = 0;
+    var doeFJ = 0;
+
+    var ajTbl = '<tr><th class="textcol">AJ</th>';
+    var ajWins = 0;
+    var ajGames = 0;
+    var ajDiff = 0;
+    var ajFJ = 0;
+
+    $.each(data, function() {
+		var team = this.Team;
+		var wins = this.Wins*1;
+		var losses = this.Losses*1;
+		var ties = this.Ties*1;
+		var net = this.NetPoints*1;
+		var rec = wins + '-' + losses;
+		if (ties > 0) {
+			rec += '-' + ties;
+		}
+		var rowData = '<td class="logocol"><img class="logo" src="https://www.dbkim.us/NFL/Logos/' + team.toLowerCase() + '.png"><br />' + rec + '</td>';
+		if (doe.indexOf(team) >= 0 ) {
+			doeTbl += rowData;
+			doeWins += wins;
+			doeGames += wins + losses + ties;
+			doeFJ += ties;
+			doeDiff += net;
+		} else if (aj.indexOf(team) >= 0 ) {
+			ajTbl += rowData;
+			ajWins += wins;
+			ajGames += wins + losses + ties;
+			ajFJ += ties;
+			ajDiff += net;
+		}
+    });
+    doeTbl += '<td class="textcol"><strong>Total Wins: ' + doeWins + ' (' + doeGames +')<br />Differential: '+doeDiff+'<br />Footjobs: '+doeFJ+ '</strong></td></tr>';
+    ajTbl += '<td class="textcol"><strong>Total Wins: ' + ajWins + ' (' + ajGames +')<br />Differential: '+ajDiff+'<br />Footjobs: '+ajFJ+ '</strong></td></tr>';
+    var winsArr = [
+        {wins: doeWins, diff: doeDiff, ties: doeFJ, table: doeTbl},
+        {wins: ajWins, diff: ajDiff, ties: ajFJ, table: ajTbl}
+        ];
+    winsArr.sort(function(a,b) {
+		if (a.wins < b.wins) return 1;
+		if (a.wins > b.wins) return -1;
+		if (a.diff < b.diff) return 1;
+		if (a.diff > b.diff) return -1;
+		if (a.ties < b.ties) return 1;
+		if (a.ties > b.ties) return -1;
+    });
+    $.each(winsArr, function() {
+        main += this.table;
+    });
+    main += '</table>';
+    document.getElementById("datalist").innerHTML = main;
+});
+</script>
+
+<h3>Last Updated: ##DATE##</h3>
+</body>
+</html>
