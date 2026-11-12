@@ -141,7 +141,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       cursor: pointer;
-      min-width: 220px;
+      min-width: 240px;
     }
 
     select:focus {
@@ -238,7 +238,7 @@
     <header>
       <div class="title-group">
         <h1>NFL Wins Pool Archives</h1>
-        <p>Historical final standings (2018 – 2025)</p>
+        <p>Historical final standings (2018 – 2026)</p>
       </div>
 
       <div class="controls">
@@ -246,7 +246,7 @@
           <button id="btn-dropdown" class="active" type="button">Dropdown Viewer</button>
           <button id="btn-static" type="button">All Years List</button>
         </div>
-        <a href="../" class="nav-link">← Current Season</a>
+        <a href="../2026.html" class="nav-link">← Current Season</a>
       </div>
     </header>
 
@@ -257,13 +257,13 @@
           <label for="season-select">Select Season:</label>
           <select id="season-select"></select>
         </div>
-        <a id="direct-link" href="2025.html" target="_blank" rel="noopener" class="open-direct">
+        <a id="direct-link" href="../2026.html" target="_blank" rel="noopener" class="open-direct">
           Open Full Page ↗
         </a>
       </div>
 
       <div class="frame-container">
-        <iframe id="archive-frame" src="2025.html" title="Archived Standings"></iframe>
+        <iframe id="archive-frame" src="../2026.html" title="Season Standings"></iframe>
       </div>
     </section>
 
@@ -274,8 +274,9 @@
   </div>
 
   <script>
-    // Add future years (e.g., 2026.html) to the top of this array
+    // Current season in parent folder + archived seasons in this folder
     const seasonFiles = [
+      "../2026.html",
       "2025.html",
       "2024.html",
       "2023.html",
@@ -286,8 +287,8 @@
       "2018.html"
     ];
 
-    // Enforce filter: only keep files starting with a 4-digit year
-    const validSeasons = seasonFiles.filter((file) => /^\d{4}/.test(file));
+    // Matches either "2025.html" or "../2026.html"
+    const validSeasons = seasonFiles.filter((file) => /^(\.\.\/)?\d{4}\.html$/.test(file));
 
     const btnDropdown = document.getElementById("btn-dropdown");
     const btnStatic = document.getElementById("btn-static");
@@ -300,12 +301,13 @@
 
     function init() {
       validSeasons.forEach((file) => {
-        const year = file.replace(".html", "");
+        const year = file.match(/\d{4}/)[0];
+        const isCurrent = file.startsWith("../");
 
         // 1. Dropdown option
         const option = document.createElement("option");
         option.value = file;
-        option.textContent = `${year} Season`;
+        option.textContent = isCurrent ? `${year} Season (Current)` : `${year} Season`;
         seasonSelect.appendChild(option);
 
         // 2. Static card
@@ -315,7 +317,7 @@
         card.innerHTML = `
           <div>
             <div class="card-year">${year}</div>
-            <div class="card-label">Final Pool Standings</div>
+            <div class="card-label">${isCurrent ? "Current Season Standings" : "Final Pool Standings"}</div>
           </div>
           <div class="card-footer">
             <span>View Standings</span>
@@ -353,16 +355,4 @@
       } else {
         dropdownView.classList.add("hidden");
         staticView.classList.remove("hidden");
-        btnStatic.classList.add("active");
-        btnDropdown.classList.remove("active");
-      }
-    }
-
-    seasonSelect.addEventListener("change", (e) => loadArchive(e.target.value));
-    btnDropdown.addEventListener("click", () => setView("dropdown"));
-    btnStatic.addEventListener("click", () => setView("static"));
-
-    init();
-  </script>
-</body>
-</html>
+        btnStatic.
