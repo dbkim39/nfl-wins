@@ -1,0 +1,254 @@
+<html>
+<head>
+<style type="text/css">
+    table {
+        border: 1px solid #777;
+        border-collapse: collapse;
+    } 
+
+    table tr th,
+    table tr td {
+        border: 1px solid #777;
+    }
+
+	.textcol {
+		width: 150px;
+		text-align: center;
+	}
+	
+	.logo {
+		width: 100px;
+	}
+	
+	.logocol {
+		width: 100px;
+		text-align: center;
+	}
+</style>
+<title>Sunday Funday HJ/BJ/FJ Pool 2023-2024</title>
+</head>
+
+<body>
+<h1>Sunday Funday HJ/BJ/FJ Pool 2023-2024</h1>
+<div id="datalist"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
+<script>
+
+$(document).ready(function() {
+function sortByProperty(property){  
+   return function(a,b){  
+      if(a[property] > b[property])  
+         return -1;  
+      else if(a[property] < b[property])  
+         return 1;  
+  
+      return 0;  
+   }  
+}
+
+var data = [{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"East","Team":"BUF","Name":"Buffalo Bills","Wins":11,"Losses":6,"Ties":0,"Percentage":0.647,"PointsFor":451,"PointsAgainst":311,"NetPoints":140,"Touchdowns":54,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":4,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":4,"DivisionRank":1,"ConferenceRank":2},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"East","Team":"MIA","Name":"Miami Dolphins","Wins":11,"Losses":6,"Ties":0,"Percentage":0.647,"PointsFor":496,"PointsAgainst":391,"NetPoints":105,"Touchdowns":61,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":19,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":19,"DivisionRank":2,"ConferenceRank":6},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"East","Team":"NYJ","Name":"New York Jets","Wins":7,"Losses":10,"Ties":0,"Percentage":0.412,"PointsFor":268,"PointsAgainst":355,"NetPoints":-87,"Touchdowns":22,"DivisionWins":2,"DivisionLosses":4,"ConferenceWins":4,"ConferenceLosses":8,"TeamID":24,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":24,"DivisionRank":3,"ConferenceRank":13},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"East","Team":"NE","Name":"New England Patriots","Wins":4,"Losses":13,"Ties":0,"Percentage":0.235,"PointsFor":236,"PointsAgainst":366,"NetPoints":-130,"Touchdowns":27,"DivisionWins":2,"DivisionLosses":4,"ConferenceWins":4,"ConferenceLosses":8,"TeamID":21,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":21,"DivisionRank":4,"ConferenceRank":16},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"North","Team":"BAL","Name":"Baltimore Ravens","Wins":13,"Losses":4,"Ties":0,"Percentage":0.765,"PointsFor":483,"PointsAgainst":280,"NetPoints":203,"Touchdowns":55,"DivisionWins":3,"DivisionLosses":3,"ConferenceWins":8,"ConferenceLosses":4,"TeamID":3,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":3,"DivisionRank":1,"ConferenceRank":1},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"North","Team":"CLE","Name":"Cleveland Browns","Wins":11,"Losses":6,"Ties":0,"Percentage":0.647,"PointsFor":396,"PointsAgainst":362,"NetPoints":34,"Touchdowns":42,"DivisionWins":3,"DivisionLosses":3,"ConferenceWins":8,"ConferenceLosses":4,"TeamID":8,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":8,"DivisionRank":2,"ConferenceRank":5},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"North","Team":"PIT","Name":"Pittsburgh Steelers","Wins":10,"Losses":7,"Ties":0,"Percentage":0.588,"PointsFor":304,"PointsAgainst":324,"NetPoints":-20,"Touchdowns":31,"DivisionWins":5,"DivisionLosses":1,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":28,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":28,"DivisionRank":3,"ConferenceRank":7},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"North","Team":"CIN","Name":"Cincinnati Bengals","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":366,"PointsAgainst":384,"NetPoints":-18,"Touchdowns":41,"DivisionWins":1,"DivisionLosses":5,"ConferenceWins":4,"ConferenceLosses":8,"TeamID":7,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":7,"DivisionRank":4,"ConferenceRank":8},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"South","Team":"HOU","Name":"Houston Texans","Wins":10,"Losses":7,"Ties":0,"Percentage":0.588,"PointsFor":377,"PointsAgainst":353,"NetPoints":24,"Touchdowns":40,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":13,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":13,"DivisionRank":1,"ConferenceRank":4},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"South","Team":"IND","Name":"Indianapolis Colts","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":396,"PointsAgainst":415,"NetPoints":-19,"Touchdowns":42,"DivisionWins":3,"DivisionLosses":3,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":14,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":14,"DivisionRank":3,"ConferenceRank":10},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"South","Team":"JAX","Name":"Jacksonville Jaguars","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":377,"PointsAgainst":371,"NetPoints":6,"Touchdowns":41,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":6,"ConferenceLosses":6,"TeamID":15,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":15,"DivisionRank":2,"ConferenceRank":9},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"South","Team":"TEN","Name":"Tennessee Titans","Wins":6,"Losses":11,"Ties":0,"Percentage":0.353,"PointsFor":305,"PointsAgainst":367,"NetPoints":-62,"Touchdowns":31,"DivisionWins":1,"DivisionLosses":5,"ConferenceWins":4,"ConferenceLosses":8,"TeamID":34,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":34,"DivisionRank":4,"ConferenceRank":14},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"West","Team":"KC","Name":"Kansas City Chiefs","Wins":11,"Losses":6,"Ties":0,"Percentage":0.647,"PointsFor":371,"PointsAgainst":294,"NetPoints":77,"Touchdowns":39,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":9,"ConferenceLosses":3,"TeamID":16,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":16,"DivisionRank":1,"ConferenceRank":3},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"West","Team":"DEN","Name":"Denver Broncos","Wins":8,"Losses":9,"Ties":0,"Percentage":0.471,"PointsFor":357,"PointsAgainst":413,"NetPoints":-56,"Touchdowns":38,"DivisionWins":3,"DivisionLosses":3,"ConferenceWins":5,"ConferenceLosses":7,"TeamID":10,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":10,"DivisionRank":3,"ConferenceRank":12},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"West","Team":"LV","Name":"Las Vegas Raiders","Wins":8,"Losses":9,"Ties":0,"Percentage":0.471,"PointsFor":332,"PointsAgainst":331,"NetPoints":1,"Touchdowns":36,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":6,"ConferenceLosses":6,"TeamID":25,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":25,"DivisionRank":2,"ConferenceRank":11},{"SeasonType":1,"Season":2023,"Conference":"AFC","Division":"West","Team":"LAC","Name":"Los Angeles Chargers","Wins":5,"Losses":12,"Ties":0,"Percentage":0.294,"PointsFor":346,"PointsAgainst":398,"NetPoints":-52,"Touchdowns":36,"DivisionWins":1,"DivisionLosses":5,"ConferenceWins":3,"ConferenceLosses":9,"TeamID":29,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":29,"DivisionRank":4,"ConferenceRank":15},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"East","Team":"DAL","Name":"Dallas Cowboys","Wins":12,"Losses":5,"Ties":0,"Percentage":0.706,"PointsFor":509,"PointsAgainst":315,"NetPoints":194,"Touchdowns":57,"DivisionWins":5,"DivisionLosses":1,"ConferenceWins":9,"ConferenceLosses":3,"TeamID":9,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":9,"DivisionRank":1,"ConferenceRank":2},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"East","Team":"PHI","Name":"Philadelphia Eagles","Wins":11,"Losses":6,"Ties":0,"Percentage":0.647,"PointsFor":433,"PointsAgainst":428,"NetPoints":5,"Touchdowns":49,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":26,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":26,"DivisionRank":2,"ConferenceRank":5},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"East","Team":"NYG","Name":"New York Giants","Wins":6,"Losses":11,"Ties":0,"Percentage":0.353,"PointsFor":266,"PointsAgainst":407,"NetPoints":-141,"Touchdowns":29,"DivisionWins":3,"DivisionLosses":3,"ConferenceWins":5,"ConferenceLosses":7,"TeamID":23,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":23,"DivisionRank":3,"ConferenceRank":13},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"East","Team":"WAS","Name":"Washington Commanders","Wins":4,"Losses":13,"Ties":0,"Percentage":0.235,"PointsFor":329,"PointsAgainst":518,"NetPoints":-189,"Touchdowns":39,"DivisionWins":0,"DivisionLosses":6,"ConferenceWins":2,"ConferenceLosses":10,"TeamID":35,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":35,"DivisionRank":4,"ConferenceRank":14},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"North","Team":"DET","Name":"Detroit Lions","Wins":12,"Losses":5,"Ties":0,"Percentage":0.706,"PointsFor":461,"PointsAgainst":395,"NetPoints":66,"Touchdowns":58,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":8,"ConferenceLosses":4,"TeamID":11,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":11,"DivisionRank":1,"ConferenceRank":3},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"North","Team":"GB","Name":"Green Bay Packers","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":383,"PointsAgainst":350,"NetPoints":33,"Touchdowns":44,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":12,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":12,"DivisionRank":2,"ConferenceRank":7},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"North","Team":"CHI","Name":"Chicago Bears","Wins":7,"Losses":10,"Ties":0,"Percentage":0.412,"PointsFor":360,"PointsAgainst":379,"NetPoints":-19,"Touchdowns":37,"DivisionWins":2,"DivisionLosses":4,"ConferenceWins":6,"ConferenceLosses":6,"TeamID":6,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":6,"DivisionRank":4,"ConferenceRank":11},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"North","Team":"MIN","Name":"Minnesota Vikings","Wins":7,"Losses":10,"Ties":0,"Percentage":0.412,"PointsFor":344,"PointsAgainst":362,"NetPoints":-18,"Touchdowns":39,"DivisionWins":2,"DivisionLosses":4,"ConferenceWins":6,"ConferenceLosses":6,"TeamID":20,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":20,"DivisionRank":3,"ConferenceRank":10},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"South","Team":"NO","Name":"New Orleans Saints","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":402,"PointsAgainst":327,"NetPoints":75,"Touchdowns":44,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":6,"ConferenceLosses":6,"TeamID":22,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":22,"DivisionRank":2,"ConferenceRank":9},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"South","Team":"TB","Name":"Tampa Bay Buccaneers","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":348,"PointsAgainst":325,"NetPoints":23,"Touchdowns":37,"DivisionWins":4,"DivisionLosses":2,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":33,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":33,"DivisionRank":1,"ConferenceRank":4},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"South","Team":"ATL","Name":"Atlanta Falcons","Wins":7,"Losses":10,"Ties":0,"Percentage":0.412,"PointsFor":321,"PointsAgainst":373,"NetPoints":-52,"Touchdowns":32,"DivisionWins":3,"DivisionLosses":3,"ConferenceWins":4,"ConferenceLosses":8,"TeamID":2,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":2,"DivisionRank":3,"ConferenceRank":12},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"South","Team":"CAR","Name":"Carolina Panthers","Wins":2,"Losses":15,"Ties":0,"Percentage":0.118,"PointsFor":236,"PointsAgainst":416,"NetPoints":-180,"Touchdowns":23,"DivisionWins":1,"DivisionLosses":5,"ConferenceWins":1,"ConferenceLosses":11,"TeamID":5,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":5,"DivisionRank":4,"ConferenceRank":16},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"West","Team":"SF","Name":"San Francisco 49ers","Wins":12,"Losses":5,"Ties":0,"Percentage":0.706,"PointsFor":491,"PointsAgainst":298,"NetPoints":193,"Touchdowns":61,"DivisionWins":5,"DivisionLosses":1,"ConferenceWins":10,"ConferenceLosses":2,"TeamID":31,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":31,"DivisionRank":1,"ConferenceRank":1},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"West","Team":"LAR","Name":"Los Angeles Rams","Wins":10,"Losses":7,"Ties":0,"Percentage":0.588,"PointsFor":404,"PointsAgainst":377,"NetPoints":27,"Touchdowns":44,"DivisionWins":5,"DivisionLosses":1,"ConferenceWins":8,"ConferenceLosses":4,"TeamID":32,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":32,"DivisionRank":2,"ConferenceRank":6},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"West","Team":"SEA","Name":"Seattle Seahawks","Wins":9,"Losses":8,"Ties":0,"Percentage":0.529,"PointsFor":364,"PointsAgainst":402,"NetPoints":-38,"Touchdowns":37,"DivisionWins":2,"DivisionLosses":4,"ConferenceWins":7,"ConferenceLosses":5,"TeamID":30,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":30,"DivisionRank":3,"ConferenceRank":8},{"SeasonType":1,"Season":2023,"Conference":"NFC","Division":"West","Team":"ARI","Name":"Arizona Cardinals","Wins":4,"Losses":13,"Ties":0,"Percentage":0.235,"PointsFor":330,"PointsAgainst":455,"NetPoints":-125,"Touchdowns":36,"DivisionWins":0,"DivisionLosses":6,"ConferenceWins":3,"ConferenceLosses":9,"TeamID":1,"DivisionTies":0,"ConferenceTies":0,"GlobalTeamID":1,"DivisionRank":4,"ConferenceRank":15}];
+
+data.sort(sortByProperty("Wins"));
+    var krieg = ["BUF","CLE","NE"];
+    var doe = ["DET","NO","CHI"];
+    var mers = ["BAL","DAL","WAS"];
+    var nate = ["PHI","PIT","LV"];
+    var marsh = ["NYJ","MIN","LAR"];
+    var klimmer = ["CIN","SEA","TB"];
+    var asbury = ["KC","ATL","CAR"];
+    var aj = ["SF","MIA","IND"];
+    var warsh = ["LAC","NYG","TEN"];
+    var sweeris = ["JAX","DEN","GB"];
+    var undrafted = ["ARI","HOU"];
+
+    var main = '<table border=0 cellpadding=0 cellspacing=0><tbody>';
+
+    var kriegTbl = '<tr><th class="textcol">Team Carolina</th>';
+    var kriegWins = 0;
+    var kriegGames = 0;
+    var kriegDiff = 0;
+    var kriegFJ = 0;
+
+    var doeTbl = '<tr><th class="textcol">Double Ds</th>';
+    var doeWins = 0;
+    var doeGames = 0;
+    var doeDiff = 0;
+    var doeFJ = 0;
+
+    var mersTbl = '<tr><th class="textcol">Mers/Maroney</th>';
+    var mersWins = 0;
+    var mersGames = 0;
+    var mersDiff = 0;
+    var mersFJ = 0;
+
+    var nateTbl = '<tr><th class="textcol">Nate/Jordo</th>';
+    var nateWins = 0;
+    var nateGames = 0;
+    var nateDiff = 0;
+    var nateFJ = 0;
+
+    var marshTbl = '<tr><th class="textcol">Marsh Hall</th>';
+    var marshWins = 0;
+    var marshGames = 0;
+    var marshDiff = 0;
+    var marshFJ = 0;
+
+    var klimmerTbl = '<tr><th class="textcol">Milk/Farts</th>';
+    var klimmerWins = 0;
+    var klimmerGames = 0;
+    var klimmerDiff = 0;
+    var klimmerFJ = 0;
+
+    var asburyTbl = '<tr><th class="textcol">Asbury/McCain</th>';
+    var asburyWins = 0;
+    var asburyGames = 0;
+    var asburyDiff = 0;
+    var asburyFJ = 0;
+
+    var ajTbl = '<tr><th class="textcol">AJ/Jimmy</th>';
+    var ajWins = 0;
+    var ajGames = 0;
+    var ajDiff = 0;
+    var ajFJ = 0;
+
+    var warshTbl = '<tr><th class="textcol">Warshauer</th>';
+    var warshWins = 0;
+    var warshGames = 0;
+    var warshDiff = 0;
+    var warshFJ = 0;
+
+    var sweerisTbl = '<tr><th class="textcol">Team Michigan</th>';
+    var sweerisWins = 0;
+    var sweerisGames = 0;
+    var sweerisDiff = 0;
+    var sweerisFJ = 0;
+
+    var undraftedTbl = '<tr><th class="textcol">Undrafted</th>';
+    var undraftedWins = 0;
+    var undraftedGames = 0;
+    var undraftedDiff = 0;
+    var undraftedFJ = 0;
+
+    $.each(data, function() {
+		var team = this.Team;
+		var wins = this.Wins*1;
+		var losses = this.Losses*1;
+		var ties = this.Ties*1;
+		var net = this.NetPoints*1;
+		var rec = wins + '-' + losses;
+		if (ties > 0) {
+			rec += '-' + ties;
+		}
+		var rowData = '<td class="logocol"><img class="logo" src="https://dbkim39.github.io/nfl-wins/Logos/' + team.toLowerCase() + '.png"><br />' + rec + '</td>';
+		if (krieg.indexOf(team) >= 0 ) {
+			kriegTbl += rowData;
+			kriegWins += wins;
+			kriegGames += wins + losses + ties;
+			kriegFJ += ties;
+			kriegDiff += net;
+		} else if (doe.indexOf(team) >= 0 ) {
+			doeTbl += rowData;
+			doeWins += wins;
+			doeGames += wins + losses + ties;
+			doeFJ += ties;
+			doeDiff += net;
+		} else if (nate.indexOf(team) >= 0 ) {
+			nateTbl += rowData;
+			nateWins += wins;
+			nateGames += wins + losses + ties;
+			nateFJ += ties;
+			nateDiff += net;
+		} else if (mers.indexOf(team) >= 0 ) {
+			mersTbl += rowData;
+			mersWins += wins;
+			mersGames += wins + losses + ties;
+			mersFJ += ties;
+			mersDiff += net;
+		} else if (marsh.indexOf(team) >= 0 ) {
+			marshTbl += rowData;
+			marshWins += wins;
+			marshGames += wins + losses + ties;
+			marshFJ += ties;
+			marshDiff += net;
+		} else if (klimmer.indexOf(team) >= 0 ) {
+			klimmerTbl += rowData;
+			klimmerWins += wins;
+			klimmerGames += wins + losses + ties;
+			klimmerFJ += ties;
+			klimmerDiff += net;
+		} else if (asbury.indexOf(team) >= 0 ) {
+			asburyTbl += rowData;
+			asburyWins += wins;
+			asburyGames += wins + losses + ties;
+			asburyFJ += ties;
+			asburyDiff += net;
+		} else if (aj.indexOf(team) >= 0 ) {
+			ajTbl += rowData;
+			ajWins += wins;
+			ajGames += wins + losses + ties;
+			ajFJ += ties;
+			ajDiff += net;
+		} else if (warsh.indexOf(team) >= 0 ) {
+			warshTbl += rowData;
+			warshWins += wins;
+			warshGames += wins + losses + ties;
+			warshFJ += ties;
+			warshDiff += net;
+		} else if (sweeris.indexOf(team) >= 0 ) {
+			sweerisTbl += rowData;
+			sweerisWins += wins;
+			sweerisGames += wins + losses + ties;
+			sweerisFJ += ties;
+			sweerisDiff += net;
+		} else if (undrafted.indexOf(team) >= 0 ) {
+			undraftedTbl += rowData;
+			undraftedWins += wins;
+			undraftedGames += wins + losses + ties;
+			undraftedFJ += ties;
+			undraftedDiff += net;
+		}
+    });
+    kriegTbl += '<td class="textcol"><strong>Total Wins: '+kriegWins+' ('+kriegGames+')<br />Differential: '+kriegDiff+'<br />Footjobs: '+kriegFJ+ '</strong></td></tr>';
+    doeTbl += '<td class="textcol"><strong>Total Wins: ' + doeWins + ' (' + doeGames +')<br />Differential: '+doeDiff+'<br />Footjobs: '+doeFJ+ '</strong></td></tr>';
+    mersTbl += '<td class="textcol"><strong>Total Wins: ' + mersWins + ' (' + mersGames +')<br />Differential: '+mersDiff+'<br />Footjobs: '+mersFJ+ '</strong></td></tr>';
+    nateTbl += '<td class="textcol"><strong>Total Wins: ' + nateWins + ' (' + nateGames +')<br />Differential: '+nateDiff+'<br />Footjobs: '+nateFJ+ '</strong></td></tr>';
+    marshTbl += '<td class="textcol"><strong>Total Wins: ' + marshWins + ' (' + marshGames +')<br />Differential: '+marshDiff+'<br />Footjobs: '+marshFJ+ '</strong></td></tr>';
+    klimmerTbl += '<td class="textcol"><strong>Total Wins: ' + klimmerWins + ' (' + klimmerGames +')<br />Differential: '+klimmerDiff+'<br />Footjobs: '+klimmerFJ+ '</strong></td></tr>';
+    asburyTbl += '<td class="textcol"><strong>Total Wins: ' + asburyWins + ' (' + asburyGames +')<br />Differential: '+asburyDiff+'<br />Footjobs: '+asburyFJ+ '</strong></td></tr>';
+    ajTbl += '<td class="textcol"><strong>Total Wins: ' + ajWins + ' (' + ajGames +')<br />Differential: '+ajDiff+'<br />Footjobs: '+ajFJ+ '</strong></td></tr>';
+    warshTbl += '<td class="textcol"><strong>Total Wins: ' + warshWins + ' (' + warshGames +')<br />Differential: '+warshDiff+'<br />Footjobs: '+warshFJ+ '</strong></td></tr>';
+    sweerisTbl += '<td class="textcol"><strong>Total Wins: ' + sweerisWins + ' (' + sweerisGames +')<br />Differential: '+sweerisDiff+'<br />Footjobs: '+sweerisFJ+ '</strong></td></tr>';
+    undraftedTbl += '<td></td><td class="textcol"><strong>Total Wins: ' + undraftedWins + ' (' + undraftedGames +')<br />Differential: '+undraftedDiff+'<br />Footjobs: '+undraftedFJ+ '</strong></td></tr>';
+    var winsArr = [
+        {wins: kriegWins, diff: kriegDiff, ties: kriegFJ, table: kriegTbl},
+        {wins: doeWins, diff: doeDiff, ties: doeFJ, table: doeTbl},
+        {wins: mersWins, diff: mersDiff, ties: mersFJ, table: mersTbl},
+        {wins: nateWins, diff: nateDiff, ties: nateFJ, table: nateTbl},
+        {wins: marshWins, diff: marshDiff, ties: marshFJ, table: marshTbl},
+        {wins: klimmerWins, diff: klimmerDiff, ties: klimmerFJ, table: klimmerTbl},
+        {wins: asburyWins, diff: asburyDiff, ties: asburyFJ, table: asburyTbl},
+        {wins: ajWins, diff: ajDiff, ties: ajFJ, table: ajTbl},
+        {wins: warshWins, diff: warshDiff, ties: warshFJ, table: warshTbl},
+        {wins: sweerisWins, diff: sweerisDiff, ties: sweerisFJ, table: sweerisTbl}
+        ];
+    winsArr.sort(function(a,b) {
+		if (a.wins < b.wins) return 1;
+		if (a.wins > b.wins) return -1;
+		if (a.diff < b.diff) return 1;
+		if (a.diff > b.diff) return -1;
+		if (a.ties < b.ties) return 1;
+		if (a.ties > b.ties) return -1;
+    });
+    $.each(winsArr, function() {
+        main += this.table;
+    });
+	main += undraftedTbl;
+    main += '</table>';
+    document.getElementById("datalist").innerHTML = main;
+});
+</script>
+
+<h3>Last Updated: Fri Jan 19 02:00:04 EST 2024</h3>
+</body>
+</html>
