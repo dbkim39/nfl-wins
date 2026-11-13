@@ -271,13 +271,13 @@
           <label for="alarm-select">Select Year:</label>
           <select id="alarm-select"></select>
         </div>
-        <a id="direct-link" href="alarm2025.html" target="_blank" rel="noopener" class="open-direct">
+        <a id="direct-link" href="../alarm2026.html" target="_blank" rel="noopener" class="open-direct">
           Open Full Page ↗
         </a>
       </div>
 
       <div class="frame-container">
-        <iframe id="archive-frame" src="alarm2025.html" title="Alarm Archive"></iframe>
+        <iframe id="archive-frame" src="../alarm2026.html" title="Alarm Archive"></iframe>
       </div>
     </section>
 
@@ -329,13 +329,15 @@
         alarmGrid.appendChild(card);
       });
 
-      // Default to the most recent archived year (alarm2025.html), or honor ?file= param
+      // Default to the current year (isCurrent), or honor ?file= param
       const params = new URLSearchParams(window.location.search);
       const requestedFile = params.get("file");
+      const currentItem = alarmFiles.find((a) => a.isCurrent) || alarmFiles[0];
+
       if (requestedFile && alarmFiles.some((a) => a.file === requestedFile)) {
         loadArchive(requestedFile);
       } else {
-        loadArchive("alarm2025.html");
+        loadArchive(currentItem.file);
       }
 
       if (params.get("view") === "list") {
